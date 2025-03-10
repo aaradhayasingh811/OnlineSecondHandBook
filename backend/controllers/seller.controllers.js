@@ -12,7 +12,7 @@ const registerSeller = async (req, res) => {
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    
+
     const { name, title, gender, email, mobile, address, password } = req.body;
 
     let existingSeller = await Seller.findOne({ email });
@@ -32,8 +32,10 @@ const registerSeller = async (req, res) => {
       password: hashedPassword,
     });
     await newSeller.save();
-    
-    res.status(201).json({ message: "Seller registered successfully", success: true });
+
+    res
+      .status(201)
+      .json({ message: "Seller registered successfully", success: true });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }
@@ -46,7 +48,7 @@ const registerSeller = async (req, res) => {
 //     if (!email || !password) {
 //       return res.status(400).json({ message: "Email and password are required" });
 //     }
-    
+
 //     const seller = await Seller.findOne({ email });
 //     if (!seller) {
 //       return res.status(400).json({ message: "Invalid credentials" });
@@ -101,7 +103,9 @@ const loginSeller = async (req, res) => {
     } else {
       // Manual Login Handling
       if (!email || !password) {
-        return res.status(400).json({ message: "Email and password are required" });
+        return res
+          .status(400)
+          .json({ message: "Email and password are required" });
       }
 
       seller = await Seller.findOne({ email });
@@ -120,14 +124,15 @@ const loginSeller = async (req, res) => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ id: seller._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+    const token = jwt.sign({ id: seller._id }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
 
-  
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true, 
+      secure: true,
       sameSite: "None",
-      maxAge: 7 * 24 * 60 * 60 * 1000, 
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({ token, seller, success: true });
@@ -145,16 +150,21 @@ const updateSellerProfile = async (req, res) => {
       updates.password = await bcrypt.hash(updates.password, 10);
     }
 
-    const updatedSeller = await Seller.findByIdAndUpdate(sellerId, updates, { 
-      new: true, 
-      runValidators: true 
+    const updatedSeller = await Seller.findByIdAndUpdate(sellerId, updates, {
+      new: true,
+      runValidators: true,
     });
 
     if (!updatedSeller) {
       return res.status(404).json({ message: "Seller not found" });
     }
 
-    res.status(200).json({ message: "Profile updated successfully", seller: updatedSeller.toObject() });
+    res
+      .status(200)
+      .json({
+        message: "Profile updated successfully",
+        seller: updatedSeller.toObject(),
+      });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }
@@ -162,7 +172,12 @@ const updateSellerProfile = async (req, res) => {
 
 // Logout Seller
 const logoutSeller = (req, res) => {
-  res.cookie("token", "", { httpOnly: true, secure: true, sameSite: "Strict", expires: new Date(0) });
+  res.cookie("token", "", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+    expires: new Date(0),
+  });
   res.status(200).json({ message: "Seller logged out successfully" });
 };
 
@@ -199,5 +214,10 @@ const profileController = async (req, res) => {
   }
 };
 
-
-export { registerSeller, loginSeller, updateSellerProfile, logoutSeller, profileController };
+export {
+  registerSeller,
+  loginSeller,
+  updateSellerProfile,
+  logoutSeller,
+  profileController,
+};

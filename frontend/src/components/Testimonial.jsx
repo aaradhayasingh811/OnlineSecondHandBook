@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import './Landing.css'
+
 const Testimonial = () => {
   const testimonials = [
     {
@@ -36,49 +37,75 @@ const Testimonial = () => {
   const TestimonialCard = ({ item }) => {
     return (
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
+        initial={{ opacity: 0, scale: 0.8, y: 50 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         whileHover={{
-          scale: 1.05,
-          boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.1)", // Elegant hover shadow
+          scale: 1.1,
+          boxShadow: "0px 15px 35px rgba(0, 0, 0, 0.2)",
+          rotate: 2,
         }}
         className="bg-white shadow-md p-6 rounded-2xl flex flex-col items-center text-center w-full max-w-xs transform transition-all duration-300"
-
       >
-        <img
+        <motion.img
           src={item.imgsrc}
           alt={item.name}
           className="w-32 h-32 rounded-full object-cover mb-4 border-4 border-[#1a5e2a]"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         />
-        <h5 className="text-[#1a5e2a] font-semibold text-lg">{item.name}</h5>
-        <p className="text-gray-500 text-sm mt-3">{item.review}</p>
+        <motion.h5
+          className="text-[#1a5e2a] font-semibold text-lg"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          {item.name}
+        </motion.h5>
+        <motion.p
+          className="text-gray-500 text-sm mt-3"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          {item.review}
+        </motion.p>
       </motion.div>
     );
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      transition={{ duration: 1, ease: "easeOut" }}
       className="py-16 px-8 bg-[#f0d942]"
-      
-
     >
-      <div className="">
-      <h2 className="text-3xl sm:text-4xl font-bold text-[#1a5e2a] mb-12 text-center">
-        What Our Customers Say
-      </h2>
+      <div>
+        <motion.h2
+          className="text-3xl sm:text-4xl font-bold text-[#1a5e2a] mb-12 text-center"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          What Our Customers Say
+        </motion.h2>
 
-      {/* Responsive Grid Layout */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center max-w-7xl mx-auto">
-        {testimonials.map((item) => (
-          <TestimonialCard item={item} key={item.id} />
-        ))}
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center max-w-7xl mx-auto"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.2 } },
+          }}
+        >
+          {testimonials.map((item) => (
+            <TestimonialCard item={item} key={item.id} />
+          ))}
+        </motion.div>
       </div>
-      </div>
-    
     </motion.div>
   );
 };

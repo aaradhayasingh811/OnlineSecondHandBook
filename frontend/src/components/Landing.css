@@ -76,15 +76,7 @@
         text-align: justify;
     }
 
-    .main-text::after{
-        content: '';
-        width: 5px;
-        height: 22%;
-        background: #013A20;
-        position: absolute;
-        left: 2.4rem;
-        top: 9.4rem;
-    }
+    
 
 .btn1, .btn2{
     padding: 10px 20px;
