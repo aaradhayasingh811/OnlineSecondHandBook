@@ -98,6 +98,10 @@ const registerController = async (req, res) => {
   
       let user;
       let token;
+      if (googleToken) {
+        console.log("Received Google Token:", googleToken);
+      }
+      
   
       if (googleToken) {
         // Google login flow
@@ -156,6 +160,7 @@ const registerController = async (req, res) => {
         
       });
     } catch (error) {
+      console.log("logging error", error)
       res.status(500).json({
         success: false,
         message: "Error logging in",
