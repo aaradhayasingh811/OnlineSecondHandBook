@@ -3,7 +3,8 @@ const app = express();
 import dotenv from "dotenv"
 import cors from "cors"
 app.use(cors({
-    origin: process.env.FRONTEND_URL,
+    // origin: process.env.FRONTEND_URL,
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials:true
 
