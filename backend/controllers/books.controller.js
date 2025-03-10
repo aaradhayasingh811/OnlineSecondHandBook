@@ -1,6 +1,6 @@
 import Book from "../models/books.model.js";
 import Seller from "../models/seller.model.js";
-
+import { uploadCloudinary } from "../middlewares/cloudinary.middleware.js";
 const allBookController = async (req, res) => {
     try {
       const books = await Book.find({}).exec();
@@ -38,6 +38,87 @@ const getSingleBookController = async(req,res) =>{
     }
 }
 
+// const addBookController = async (req, res) => {
+//   try {
+//     const {
+//       title,
+//       author,
+//       language,
+//       publisher,
+//       genre,
+//       edition,
+//       publicationYear,
+//       pages,
+//       condition,
+//       price,
+//       originalPrice,
+//       stock,
+//       quantity,
+//       imprint,
+//       days,
+//     } = req.body;
+
+
+
+//     // Check if all required fields are provided
+//     if (
+//       !title ||
+//       !author ||
+//       !language ||
+//       !publisher ||
+//       !genre ||
+//       !edition ||
+//       !publicationYear ||
+//       !pages ||
+//       !condition ||
+//       !price ||
+//       !originalPrice ||
+//       !stock
+//     ) {
+//       return res.status(400).json({ success: false, message: "All fields are required" });
+//     }
+
+//     const sellerId = req.seller.id;
+//     const seller = await Seller.findById(sellerId); // ✅ FIXED: Await the query
+
+//     if (!seller) {
+//       return res.status(404).json({ success: false, message: "Seller not found" });
+//     }
+
+//     // Create new book
+//     const newBook = new Book({
+//       title,
+//       author,
+//       language,
+//       publisher,
+//       genre,
+//       edition,
+//       publicationYear,
+//       pages,
+//       condition,
+//       price,
+//       originalPrice,
+//       stock,
+//       seller: seller._id, 
+//       quantity: quantity || 1,
+//       imprint: imprint || "XYZ Publisher",
+//       days: days || 0,
+//     });
+
+//     // Save the book to the database
+//     await newBook.save();
+
+//     res.status(201).json({ success: true, message: "Book added successfully", book: newBook });
+
+//   } catch (error) {
+//     res.status(500).json({
+//       success: false,
+//       message: "Error adding book",
+//       error: error.message,
+//     });
+//   }
+// };
+
 const addBookController = async (req, res) => {
   try {
     const {
@@ -60,27 +141,22 @@ const addBookController = async (req, res) => {
 
     // Check if all required fields are provided
     if (
-      !title ||
-      !author ||
-      !language ||
-      !publisher ||
-      !genre ||
-      !edition ||
-      !publicationYear ||
-      !pages ||
-      !condition ||
-      !price ||
-      !originalPrice ||
-      !stock
+      !title || !author || !language || !publisher || !genre || !edition ||
+      !publicationYear || !pages || !condition || !price || !originalPrice || !stock
     ) {
       return res.status(400).json({ success: false, message: "All fields are required" });
     }
 
     const sellerId = req.seller.id;
-    const seller = await Seller.findById(sellerId); // ✅ FIXED: Await the query
-
+    const seller = await Seller.findById(sellerId);
     if (!seller) {
       return res.status(404).json({ success: false, message: "Seller not found" });
+    }
+
+    // ✅ Handle Image Upload to Cloudinary
+    let imageUrl = "";
+    if (req.file) {
+      imageUrl = await uploadCloudinary(req.file.path);
     }
 
     // Create new book
@@ -97,16 +173,21 @@ const addBookController = async (req, res) => {
       price,
       originalPrice,
       stock,
-      seller: seller._id, 
+      seller: seller._id,
       quantity: quantity || 1,
       imprint: imprint || "XYZ Publisher",
       days: days || 0,
+      image: imageUrl, // ✅ Save Cloudinary image URL
     });
 
     // Save the book to the database
     await newBook.save();
 
-    res.status(201).json({ success: true, message: "Book added successfully", book: newBook });
+    res.status(201).json({
+      success: true,
+      message: "Book added successfully",
+      book: newBook,
+    });
 
   } catch (error) {
     res.status(500).json({
@@ -116,7 +197,6 @@ const addBookController = async (req, res) => {
     });
   }
 };
-
 
 const filterbooksController = async(req,res) =>{
   try {
