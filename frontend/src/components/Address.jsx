@@ -36,6 +36,7 @@ const Address = ({ selectedAddress, setSelectedAddress }) => {
       alert("All fields are required!");
       return;
     }
+    console.log(newAddress)
     setSaving(true);
     try {
       if (isEditing) {
