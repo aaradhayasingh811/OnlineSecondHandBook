@@ -99,7 +99,7 @@ const Profile = () => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/profile`, { withCredentials: true });
-        const { _id, password, totalProducts, address, __v, isLoggedIn, ...filteredUser } = response.data.user;
+        const { _id, password, totalProducts, address, __v,isGoogleUser, isLoggedIn, ...filteredUser } = response.data.user;
         setUser(filteredUser);
         setEditData({
           name: filteredUser.name,

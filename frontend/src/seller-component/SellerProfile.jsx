@@ -17,7 +17,7 @@ const SellerProfile = () => {
           { withCredentials: true }
         );
 
-        const { _id, totalProducts, createdAt, __v, ...filteredProfile } =
+        const { _id, totalProducts, createdAt,isGoogleUser, __v, ...filteredProfile } =
           response.data.seller;
 
         setProfile(filteredProfile);
