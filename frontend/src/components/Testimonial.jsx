@@ -7,28 +7,28 @@ const Testimonial = () => {
       id: 1,
       name: "Alice Johnson",
       imgsrc:
-        "https://img.freepik.com/free-photo/young-woman-posing-outdoors_23-2149181517.jpg",
+        "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?t=st=1741606128~exp=1741609728~hmac=092aa447680d7e449bfae5ec1749d03304cd8066ff7a6e6d834341ba9c3575f1&w=1380",
       review: "This bookstore is amazing! I found rare books at great prices.Great deals and easy-to-use website. Will buy again!Great deals and easy-to-use website. Will buy again!",
     },
     {
       id: 2,
       name: "Michael Smith",
       imgsrc:
-        "https://img.freepik.com/free-photo/portrait-handsome-smiling-man-wearing-glasses_171337-14814.jpg",
+        "https://img.freepik.com/free-photo/smiling-caucasian-young-guy-wearing-pink-shirt-isolated-white-background_141793-38613.jpg?ga=GA1.1.1646366203.1721816203&semt=ais_hybrid",
       review: "Fast shipping and excellent customer service. Highly recommended!Great deals and easy-to-use website. Will buy again!Great deals and easy-to-use website. Will buy again!",
     },
     {
       id: 3,
       name: "Emily Carter",
       imgsrc:
-        "https://img.freepik.com/free-photo/portrait-young-woman-smiling_23-2149201296.jpg",
+        "https://img.freepik.com/free-photo/smiling-young-woman-against-white-background_23-2147838684.jpg?ga=GA1.1.1646366203.1721816203&semt=ais_hybrid",
       review: "A wonderful selection of books! Loved the second-hand collection.Great deals and easy-to-use website. Will buy again!Great deals and easy-to-use website. Will buy again!",
     },
     {
       id: 4,
-      name: "David Brown",
+      name: "Alina Brown",
       imgsrc:
-        "https://img.freepik.com/free-photo/confident-businessman-posing_23-2147949232.jpg",
+        "https://img.freepik.com/free-photo/close-up-outdoor-portrait-attractive-young-european-woman-with-stylish-bob-haircut-spending-time-wild-nature-having-happy-carefree-facial-expression-enjoying-vacations-some-tropical-country_343059-297.jpg?ga=GA1.1.1646366203.1721816203&semt=ais_hybrid",
       review: "Great deals and easy-to-use website. Will buy again!Great deals and easy-to-use website. Will buy again!Great deals and easy-to-use website. Will buy again!",
     },
   ];

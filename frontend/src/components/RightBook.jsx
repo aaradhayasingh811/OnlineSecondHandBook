@@ -15,6 +15,7 @@ const RightBook = () => {
     ? ((book.originalPrice - book.price) / book.originalPrice) * 100
     : 0;
 
+
     useEffect(() => {
       const checkWishlistStatus = async () => {
         try {
@@ -25,6 +26,7 @@ const RightBook = () => {
             withCredentials: true,
           });
           setReview(res.data.review)
+          console.log("review",review)
 
           
          

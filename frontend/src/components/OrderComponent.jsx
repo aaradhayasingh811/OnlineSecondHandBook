@@ -1,62 +1,3 @@
-// import React, { useState } from "react";
-// import { Star } from "lucide-react";
-
-// const OrderComponent = ({ image, title, authors, price, deliveryDate, statusMessage }) => {
-//   const [isCancelled, setIsCancelled] = useState(false);
-
-//   const handleCancelOrder = () => {
-//     setIsCancelled(true);
-//   };
-
-//   if (isCancelled) {
-//     return (
-//       <div className="w-full max-w-2xl p-4 flex flex-col items-center border border-gray-200 rounded-xl shadow-md bg-white">
-//         <p className="text-red-600 font-medium">Order has been cancelled.</p>
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div className="w-full max-w-2xl p-4 flex flex-col sm:flex-row items-center border border-gray-200 rounded-xl shadow-md bg-white hover:shadow-lg transition-all duration-300">
-//       {/* Product Image */}
-//       <div className="w-32 h-40 sm:w-28 sm:h-36 flex-shrink-0">
-//         <img
-//           src={image}
-//           alt={title}
-//           className="w-full h-full object-cover rounded-lg border border-gray-300"
-//         />
-//       </div>
-
-//       {/* Product Details */}
-//       <div className="flex-1 flex flex-col justify-between sm:ml-6 mt-4 sm:mt-0 text-center sm:text-left">
-//         <h3 className="text-lg sm:text-xl font-semibold text-gray-900">{title}</h3>
-//         <p className="text-sm text-gray-600">{authors}</p>
-//         <p className="text-lg font-semibold text-gray-900 mt-2">${price}</p>
-//         <p className="text-sm text-green-600 font-medium mt-1">✔ Delivered on {deliveryDate}</p>
-//         <p className="text-xs text-gray-500">{statusMessage}</p>
-
-//         <div className="flex flex-col sm:flex-col gap-2 mt-4">
-//           {/* Rate & Review Button */}
-//           <button className="flex items-center justify-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 transition-all">
-//             <Star size={16} className="text-yellow-400" />
-//             Rate & Review Product
-//           </button>
-
-//           {/* Cancel Order Button */}
-//           <button
-//             onClick={handleCancelOrder}
-//             className="px-4 py-2 rounded-lg text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition-all"
-//           >
-//             Cancel Order
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default OrderComponent;
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Star, X } from "lucide-react";
@@ -148,12 +89,12 @@ const OrderComponent = ({
   statusMessage,
   bookId,
   orderId,
-  status
+  status,
 }) => {
   const [isCancelled, setIsCancelled] = useState(false);
   const [showReview, setShowReview] = useState(false);
   const [review, setReview] = useState(null);
-
+  
   useEffect(() => {
     const fetchReview = async () => {
       try {
@@ -163,6 +104,8 @@ const OrderComponent = ({
             withCredentials: true,
           }
         );
+        
+        
         if (
           Array.isArray(response.data.reviews) &&
           response.data.reviews.length > 0 &&
@@ -171,13 +114,16 @@ const OrderComponent = ({
           setReview(response.data.reviews[0]); // Assuming one review per user
         } else {
           setReview(null);
-          setIsCancelled(true)
+          setIsCancelled(true);
         }
       } catch (error) {
         console.error("Error fetching review:", error);
       }
     };
-
+    console.log(status)
+        if(status === "Cancelled"){
+          setIsCancelled(true)
+        }
     fetchReview();
   }, [bookId]);
 
