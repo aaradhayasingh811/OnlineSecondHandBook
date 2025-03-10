@@ -1,8 +1,12 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Payment = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { cartItems, totalPrice, selectedAddress } = location.state || {}; 
   const toOrder = async()=>{
     try {
@@ -13,7 +17,12 @@ const Payment = () => {
           );
           
           console.log(response)
-          alert("order is booked by your side")
+          toast.success("You are directed to the Payment Page...");
+          navigate('/stripe-pay' , {
+            state:{
+              totalPrice
+            }
+          })
 
         
     } catch (error) {

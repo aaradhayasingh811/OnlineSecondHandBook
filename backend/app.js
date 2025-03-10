@@ -25,6 +25,7 @@ import reviewRoute from "./routes/review.route.js";
 import cartRoutes from "./routes/cart.route.js";
 import wishRoutes from "./routes/wishlist.route.js";
 import orderRouter from "./routes/order.route.js";
+import StripeRouter from "./routes/stripe.route.js";
 app.use("/api/v1",userRoute);
 app.use("/api/v1",bookRoutes);
 app.use("/api/v1",sellerRoutes);
@@ -32,5 +33,7 @@ app.use("/api/v1",reviewRoute);
 app.use("/api/v1",cartRoutes);
 app.use("/api/v1",wishRoutes);
 app.use("/api/v1",orderRouter);
+app.use("/api/v1/stripe", StripeRouter);
+
 
 export default app;

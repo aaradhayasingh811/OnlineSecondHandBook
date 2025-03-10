@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const LeftBook = () => {
     const location = useLocation();
   const book = location.state?.book || {};
@@ -22,14 +23,16 @@ const LeftBook = () => {
 
       if (response.data.success) {
         setCartItems(response.data.cartItems || []); // Store updated cart
-        alert("Book added to cart successfully!");
+        toast.success("Book added to cart successfully!");
+        
         console.log("Response:", response.data);
       } else {
-        alert("Failed to add book to cart.");
+        toast.error("Failed to add book to cart.")
       }
     } catch (error) {
       console.error("Error adding to cart:", error);
-      alert("An error occurred while adding to cart.");
+      toast.error("An error occurred while adding to cart.")
+
     }
   };
 
@@ -55,7 +58,7 @@ const LeftBook = () => {
   
     } catch (error) {
       console.error("Error in booking the item:", error);
-      alert("Failed to fetch book details.");
+      toast.error("Failed to fetch book details.")
     }
   };
   

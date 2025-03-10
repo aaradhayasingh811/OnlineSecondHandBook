@@ -31,7 +31,7 @@
 //       <div className="flex-1 flex flex-col justify-between sm:ml-6 mt-4 sm:mt-0 text-center sm:text-left">
 //         <h3 className="text-lg sm:text-xl font-semibold text-gray-900">{title}</h3>
 //         <p className="text-sm text-gray-600">{authors}</p>
-//         <p className="text-lg font-semibold text-gray-900 mt-2">₹{price}</p>
+//         <p className="text-lg font-semibold text-gray-900 mt-2">${price}</p>
 //         <p className="text-sm text-green-600 font-medium mt-1">✔ Delivered on {deliveryDate}</p>
 //         <p className="text-xs text-gray-500">{statusMessage}</p>
 
@@ -211,7 +211,7 @@ const OrderComponent = ({
           {title}
         </h3>
         <p className="text-sm text-gray-600">{authors}</p>
-        <p className="text-lg font-semibold text-gray-900 mt-2">₹{price}</p>
+        <p className="text-lg font-semibold text-gray-900 mt-2">${price}</p>
         <p className="text-xs text-gray-500">{statusMessage}</p>
 
         {review && (

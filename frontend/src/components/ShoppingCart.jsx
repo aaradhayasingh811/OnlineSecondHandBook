@@ -111,8 +111,8 @@ const ShoppingCart = () => {
                   <p className="text-gray-600 text-sm">{book.author || "Unknown Author"}</p>
                   
                   <p className="text-green-600 font-semibold text-lg">
-                    ₹{book.price?.toFixed(2)} 
-                    <span className="text-gray-500 line-through text-sm"> ₹{book.originalPrice?.toFixed(2)}</span>
+                    ${book.price?.toFixed(2)} 
+                    <span className="text-gray-500 line-through text-sm"> ${book.originalPrice?.toFixed(2)}</span>
                   </p>
                 </div>
 

@@ -63,8 +63,8 @@ const Wishlist = ({
 
         {/* Pricing Section */}
         <div className="flex items-center space-x-2 mt-2">
-          <p className="text-md font-bold text-gray-900">₹{price}</p>
-          <p className="text-xs text-gray-500 line-through">₹{originalPrice}</p>
+          <p className="text-md font-bold text-gray-900">${price}</p>
+          <p className="text-xs text-gray-500 line-through">${originalPrice}</p>
           <p className="text-xs text-green-600 font-medium">({discount.toFixed(2)}% off)</p>
         </div>
       </div>

@@ -135,12 +135,12 @@ const Checkout = () => {
         {cartItems.map((item, index) => (
           <div key={index} className="flex justify-between items-center py-2 border-b last:border-b-0">
             <p>{item.book.title} x {item.quantity}</p>
-            <p className="font-semibold">₹{(item.book.price * item.quantity).toFixed(2)}</p>
+            <p className="font-semibold">${(item.book.price * item.quantity).toFixed(2)}</p>
           </div>
         ))}
         <div className="flex justify-between font-bold text-lg mt-3">
           <p>Total:</p>
-          <p>₹{totalPrice}</p>
+          <p>${totalPrice}</p>
         </div>
       </div>
 

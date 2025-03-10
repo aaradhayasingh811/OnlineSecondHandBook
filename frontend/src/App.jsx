@@ -11,6 +11,7 @@ import Cart from "./pages/Cart";
 import AllBooks from "./pages/AllBooks";
 import Order from "./pages/Order";
 import Payment from "./pages/Payment";
+import Stripe from "./components/Stripe";
 import UserDashboard from "./pages/UserDashboard";
 import AuthSeller from "../src/seller-pages/AuthSeller";
 import SellerDashboard from "./seller-pages/SellerDashboard";
@@ -57,6 +58,7 @@ const MainContent = () => {
         <Route path="/checkout" element={<Order />} />
         <Route path="/user-dashboard" element={<UserDashboard />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/stripe-pay" element={<Stripe />} />
         {/* Seller Routes */}
         <Route path="/loginSeller" element={<AuthSeller />} />
         <Route path="/registerSeller" element={<AuthSeller />} />

@@ -81,9 +81,9 @@ const BestSellerCard = ({ book, handleUpdate }) => {
 
           {/* Pricing */}
           <p className="text-green-600 font-semibold text-lg mt-2">
-            ₹{Number(book.price)?.toFixed(2) || "N/A"}{" "}
+            ${Number(book.price)?.toFixed(2) || "N/A"}{" "}
             <span className="text-gray-500 line-through text-sm">
-              ₹{Number(book.originalPrice)?.toFixed(2) || "N/A"}
+              ${Number(book.originalPrice)?.toFixed(2) || "N/A"}
             </span>{" "}
             {discount > 0 && (
               <span className="text-red-500 text-sm">({discount}% off)</span>

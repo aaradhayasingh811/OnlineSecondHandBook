@@ -73,9 +73,9 @@ const BestSeller = ({ books }) => {
 
           {/* Pricing */}
           <p className="text-green-600 font-semibold text-lg mt-2">
-            ₹{book.price.toFixed(2)}{" "}
+            ${book.price.toFixed(2)}{" "}
             <span className="text-gray-500 line-through text-sm">
-              ₹{book.originalPrice.toFixed(2)}
+              ${book.originalPrice.toFixed(2)}
             </span>{" "}
             <span className="text-red-500 text-sm">
               ({Math.round(book.discount)}% off)

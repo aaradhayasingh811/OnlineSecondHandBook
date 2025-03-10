@@ -93,7 +93,7 @@ const RightBook = () => {
       </div>
 
       <div className="mt-4 text-2xl font-bold text-green-600">
-        ₹{book.price} <span className="text-gray-500 line-through text-lg">₹{book.originalPrice}</span>
+        ${book.price} <span className="text-gray-500 line-through text-lg">${book.originalPrice}</span>
         <span className="text-red-500 text-lg"> ({discountPercentage.toFixed(0)}% OFF)</span>
       </div>
       <p className="text-gray-600 text-sm">Inclusive of all taxes</p>
