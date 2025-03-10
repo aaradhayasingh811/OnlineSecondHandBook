@@ -14,9 +14,10 @@ const addressSchema = new mongoose.Schema({
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  phone: { type: String, required: true, unique: true },
-  address: [addressSchema], // Array of address objects
-  password: { type: String, required: true },
+  password: { type: String, required: function () { return !this.isGoogleUser; } }, // Conditional required
+  phone: { type: String, required: function () { return !this.isGoogleUser; } },
+  gender: { type: String },
+  isGoogleUser: { type: Boolean, default: false }, 
   totalProducts: { type: Number, default: 0 },
   isLoggedIn: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now },

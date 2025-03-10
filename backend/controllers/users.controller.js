@@ -112,14 +112,13 @@ const registerController = async (req, res) => {
   
         const payload = ticket.getPayload();
         user = await User.findOne({ email: payload?.email });
-  
         if (!user) {
           user = new User({
             name: payload?.name,
             email: payload?.email,
-            password: null, // No password needed for Google users
-            phone: "",
-            gender: "",
+            password: undefined,
+            phone: undefined, 
+            isGoogleUser: true, 
           });
           await user.save();
         }
