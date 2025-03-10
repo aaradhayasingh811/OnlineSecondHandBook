@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const LeftBook = () => {
+    const location = useLocation();
+  const book = location.state?.book || {};
+  console.log(book)
   const { id: bookId } = useParams(); 
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
@@ -59,7 +63,7 @@ const LeftBook = () => {
   return (
     <div className="flex flex-col items-center justify-center h-full">
       <img
-        src="https://marketplace.canva.com/EAFfSnGl7II/2/0/1003w/canva-elegant-dark-woods-fantasy-photo-book-cover-vAt8PH1CmqQ.jpg"
+        src={ book.image || "https://marketplace.canva.com/EAFfSnGl7II/2/0/1003w/canva-elegant-dark-woods-fantasy-photo-book-cover-vAt8PH1CmqQ.jpg"}
         alt="Book Cover"
         className="h-[60vh] w-[80%] max-w-xs md:max-w-sm lg:max-w-md rounded-lg shadow-lg transition-transform transform hover:scale-105"
       />
